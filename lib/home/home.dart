@@ -6,14 +6,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(246, 50, 88, 239),
-        title: const Text("Consultorio kairo"),
-        centerTitle: true,
-        elevation: 0.0,
-      ),
-      body: const LoginPage(),
+    return const Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Color.fromARGB(255, 241, 241, 241),
+      body: LoginPage(),
     );
   }
 }
