@@ -1,30 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:tetflutter/register/register.dart';
 import 'package:tetflutter/users/user.dart';
+import 'package:tetflutter/utils/redirect_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: double.maxFinite,
-      width: double.maxFinite,
+    return SingleChildScrollView(
+      reverse: true,
       child: Column(
         children: [
-          Logo(
+          ChildContainer(
             myChild: Container(
               margin: const EdgeInsets.only(top: 40),
               // color: Colors.red,
               child: Column(
                 children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 80,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Image.asset(
-                        'assets/logo2.jpg',
+                  Hero(
+                    tag: 'logo',
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 80,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image.asset(
+                          'assets/logo2.jpg',
+                        ),
                       ),
                     ),
                   ),
@@ -42,49 +45,59 @@ class LoginPage extends StatelessWidget {
           ),
           Column(
             children: [
-              Logo(
+              ChildContainer(
                 myChild: Column(
                   children: [
-                    Container(
-                      // color: Colors.blue,
-                      child: Column(
-                        children: [
-                          const Inputs(hint: 'Correo'),
-                          const Inputs(hint: 'Contraseña'),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  padding: const EdgeInsets.all(10),
-                                  margin: const EdgeInsets.only(top: 25),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'Iniciar sesión'.toUpperCase(),
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                onTap: () {
-                                  final route = MaterialPageRoute(
-                                      builder: (context) => const GetUser());
-                                  Navigator.push(context, route);
-                                },
+                    Column(
+                      children: [
+                        const Inputs(
+                            hint: 'Correo',
+                            typeInput: TextInputType.emailAddress),
+                        const Inputs(
+                            hint: 'Contraseña',
+                            typeInput: TextInputType.text,
+                            seePassword: true),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              child: Hero(
+                                tag: 'goToPage',
+                                child: goToPage(context, 'Iniciar sesión'),
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                              onTap: () {
+                                final route = MaterialPageRoute(
+                                    builder: (context) => const GetUser());
+                                Navigator.push(context, route);
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
+              ChildContainer(
+                myChild: Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('¿No tienes cuenta?, '),
+                      TextButton(
+                        onPressed: () {
+                          final route = MaterialPageRoute(
+                              builder: (context) => const RegisterPage());
+
+                          Navigator.push(context, route);
+                        },
+                        child: const Text('Registrarse'),
+                      )
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ],
@@ -93,8 +106,8 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class Logo extends StatelessWidget {
-  const Logo({super.key, required this.myChild});
+class ChildContainer extends StatelessWidget {
+  const ChildContainer({super.key, required this.myChild});
   final Widget myChild;
   @override
   Widget build(BuildContext context) {
@@ -108,8 +121,14 @@ class Logo extends StatelessWidget {
 }
 
 class Inputs extends StatelessWidget {
-  const Inputs({super.key, required this.hint});
+  const Inputs(
+      {super.key,
+      required this.hint,
+      required this.typeInput,
+      this.seePassword});
   final String hint;
+  final TextInputType typeInput;
+  final bool? seePassword;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -118,6 +137,8 @@ class Inputs extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(30)),
         child: TextFormField(
+          obscureText: seePassword ?? false,
+          keyboardType: typeInput,
           decoration: InputDecoration(border: InputBorder.none, hintText: hint),
         ));
   }

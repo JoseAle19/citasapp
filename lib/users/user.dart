@@ -75,22 +75,20 @@ class GetUser extends StatelessWidget {
                                                   fontSize: 20),
                                             ),
                                           ),
-                                          Container(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Conrreo: ${data.users![index].email}',
-                                                ),
-                                                Text(
-                                                    'Contraseña: ${data.users![index].password}'),
-                                                Text(
-                                                    'Telefono: ${data.users![index].phone}'),
-                                                Text(
-                                                    'Rol: ${data.users![index].rol}'),
-                                              ],
-                                            ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Conrreo: ${data.users![index].email}',
+                                              ),
+                                              Text(
+                                                  'Contraseña: ${data.users![index].password}'),
+                                              Text(
+                                                  'Telefono: ${data.users![index].phone}'),
+                                              Text(
+                                                  'Rol: ${data.users![index].rol}'),
+                                            ],
                                           )
                                         ],
                                       ),
