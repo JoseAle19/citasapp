@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:tetflutter/register/register.dart';
 import 'package:tetflutter/users/user.dart';
@@ -20,13 +21,16 @@ class LoginPage extends StatelessWidget {
                 children: [
                   Hero(
                     tag: 'logo',
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 80,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.asset(
-                          'assets/logo2.jpg',
+                    child: FadeInLeftBig(
+                      duration: const Duration(milliseconds: 800),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 80,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.asset(
+                            'assets/logo2.jpg',
+                          ),
                         ),
                       ),
                     ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:tetflutter/appointment/utils/utils.dart';
+import 'package:tetflutter/utils/arrow_button.dart';
 
 class Appointments extends StatelessWidget {
   const Appointments({super.key});
@@ -7,13 +9,10 @@ class Appointments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 59, 58, 58),
-        title: Text('Citas pendientes'),
-        centerTitle: true,
-        elevation: 0.0,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [arrowButton(context), Expanded(child: ListAppointment())],
       ),
-      body: ListAppointment(),
     );
   }
 }

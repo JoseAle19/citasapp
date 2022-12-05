@@ -15,6 +15,7 @@ class HomeAppointment extends StatelessWidget {
         return Scaffold(
           body: bodyIndex(controller.currentIndex.value),
           bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Colors.white,
             currentIndex: controller.currentIndex.value,
             onTap: (value) => controller.currentIndex.value = value,
             items: const <BottomNavigationBarItem>[
@@ -27,7 +28,7 @@ class HomeAppointment extends StatelessWidget {
                 label: 'Profile',
               ),
             ],
-            selectedItemColor: Color.fromARGB(255, 11, 88, 151),
+            selectedItemColor: Colors.blueAccent,
           ),
         );
       },

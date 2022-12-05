@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:tetflutter/appointment/home_Appointment.dart';
 import 'package:tetflutter/login/login.dart';
@@ -22,13 +23,16 @@ class RegisterPage extends StatelessWidget {
                     children: [
                       Hero(
                         tag: 'logo',
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 70,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: Image.asset(
-                              'assets/logo2.jpg',
+                        child: FadeInRightBig(
+                          duration: const Duration(milliseconds: 800),
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 70,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Image.asset(
+                                'assets/logo2.jpg',
+                              ),
                             ),
                           ),
                         ),
