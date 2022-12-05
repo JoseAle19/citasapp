@@ -1,9 +1,10 @@
 import 'package:http/http.dart' as http;
-import 'package:tetflutter/inviroments.dart';
+import 'package:tetflutter/enviroments.dart';
 
 import 'model.dart';
 
 Future<Users> getUser() async {
+  print('Nueva peticion');
   // const url = 'https://citasapi.onrender.com/users/listUsers/';
   const url = '${Enviroemnts.baseUrl}/users/listUsers/';
   final uri = Uri.parse(url);
