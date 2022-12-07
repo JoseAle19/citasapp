@@ -1,10 +1,11 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tetflutter/appointment/apointments/appointment_model.dart';
+import 'package:tetflutter/appointment/apointments/appointments.dart';
 import 'package:tetflutter/appointment/apointments/appointments_api.dart';
 import 'package:tetflutter/appointment/apointments/controller_appointment.dart';
+import 'package:tetflutter/appointment/home_Appointment.dart';
 
 class ListAppointment extends StatelessWidget {
   const ListAppointment({super.key});
@@ -115,7 +116,18 @@ class ListAppointment extends StatelessWidget {
                                                 .statustAppointment ==
                                             true
                                         ? null
-                                        : () {},
+                                        : () {
+                                            final indexAppointment =
+                                                dataAppointments
+                                                    .appointmentsFinish![index]
+                                                    .id;
+                                            deleteAppoinmet(indexAppointment!);
+                                            final newRoute = MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const HomeAppointment());
+                                            Navigator.pushReplacement(
+                                                context, newRoute);
+                                          },
                                     child: const Text('Aceptar'),
                                   ),
                                 ],
@@ -130,32 +142,5 @@ class ListAppointment extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class DatePicker extends StatefulWidget {
-  const DatePicker({
-    Key? key,
-    required this.timeAppointment,
-  }) : super(key: key);
-
-  final DateTime timeAppointment;
-  @override
-  State<DatePicker> createState() => _DatePickerState();
-}
-
-class _DatePickerState extends State<DatePicker> {
-  DateTime? selectedDate;
-  @override
-  Widget build(BuildContext context) {
-    return DateTimeField(
-        decoration: const InputDecoration(
-            hintText: 'Selecciona una fecha', border: InputBorder.none),
-        selectedDate: widget.timeAppointment,
-        onDateSelected: (DateTime value) {
-          setState(() {
-            selectedDate = value;
-          });
-        });
   }
 }
